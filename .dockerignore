@@ -1,0 +1,5 @@
+.git
+*.log
+testlogs/
+hosts.txt
+__pycache__
