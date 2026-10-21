@@ -57,3 +57,26 @@ python python/ping_check.py --help
 - 用 cron 定时运行巡检脚本
 - 磁盘告警后自动触发日志清理
 - 加入告警通知
+
+## Docker 用法
+
+构建镜像：
+
+```bash
+docker build -t ops-toolkit:v1 .
+```
+
+运行（挂载主机列表）：
+
+```bash
+docker run --rm -v "$(pwd)/hosts.txt:/app/hosts.txt" ops-toolkit:v1
+```
+
+自定义参数并把日志写回本机：
+
+```bash
+mkdir -p logs
+docker run --rm -v "$(pwd)/hosts.txt:/app/hosts.txt" -v "$(pwd)/logs:/app/logs" ops-toolkit:v1 --file hosts.txt --count 1 --timeout 2 --log logs/check.log
+```
+
+说明：镜像基于 python:3.12-slim，并安装 iputils-ping；hosts.txt 和日志不打进镜像，运行时通过 `-v` 挂载。
