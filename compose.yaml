@@ -1,0 +1,8 @@
+services:
+  ops-toolkit:
+    build: .
+    image: ops-toolkit:compose
+    volumes:
+      - ./hosts.txt:/app/hosts.txt
+      - ./logs:/app/logs
+    command: ["--file", "hosts.txt", "--count", "1", "--timeout", "2", "--log", "logs/check.log"]

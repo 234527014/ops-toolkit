@@ -1,0 +1,9 @@
+services:
+  app:
+    image: alpine
+    command: ["sh", "-c", "date >> /data/log.txt; cat /data/log.txt"]
+    volumes:
+      - mydata:/data
+
+volumes:
+  mydata:
