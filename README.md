@@ -80,3 +80,21 @@ docker run --rm -v "$(pwd)/hosts.txt:/app/hosts.txt" -v "$(pwd)/logs:/app/logs" 
 ```
 
 说明：镜像基于 python:3.12-slim，并安装 iputils-ping；hosts.txt 和日志不打进镜像，运行时通过 `-v` 挂载。
+## Docker Compose 用法
+
+在仓库根目录运行（hosts.txt 和 logs 目录由 compose.yaml 自动挂载）：
+
+```bash
+docker compose build
+docker compose run --rm ops-toolkit
+```
+
+退出码和直接运行脚本一致：0 全部正常，1 有主机不通。
+
+`compose-lab/` 是练习目录，演示命名卷：
+
+```bash
+cd compose-lab
+docker compose run --rm app     # 每次运行日志都会累积在卷里
+docker compose down             # 删容器和网络，保留卷
+docker compose down -v          # 连卷一起删，数据丢失
