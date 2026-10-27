@@ -1,0 +1,8 @@
+FROM python:3.12-alpine
+
+
+WORKDIR /app
+COPY python/ /app/python/
+
+ENTRYPOINT ["python", "python/ping_check.py"]
+CMD ["--file", "hosts.txt"]
