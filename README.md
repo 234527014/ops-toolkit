@@ -98,3 +98,14 @@ cd compose-lab
 docker compose run --rm app     # 每次运行日志都会累积在卷里
 docker compose down             # 删容器和网络，保留卷
 docker compose down -v          # 连卷一起删，数据丢失
+## Docker 进阶
+
+镜像瘦身：把基础镜像从 python:3.12-slim 换成 python:3.12-alpine，镜像从 181MB 降到 74MB，脚本输出与退出码保持一致。
+
+```bash
+docker build -f Dockerfile.alpine -t ops-toolkit:alpine .
+```
+
+多阶段构建：编译工具只留在第一阶段，最终镜像只拷贝成品（示例见 multistage-lab，单阶段 398MB，多阶段 12.9MB）。
+
+健康检查：Dockerfile 中用 HEALTHCHECK 定期探测服务是否真的可用，docker ps 的 STATUS 会显示 healthy 或 unhealthy（示例见 health-lab）。
