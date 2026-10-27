@@ -109,7 +109,7 @@ docker build -f Dockerfile.alpine -t ops-toolkit:alpine .
 多阶段构建：编译工具只留在第一阶段，最终镜像只拷贝成品（示例见 multistage-lab，单阶段 398MB，多阶段 12.9MB）。
 
 健康检查：Dockerfile 中用 HEALTHCHECK 定期探测服务是否真的可用，docker ps 的 STATUS 会显示 healthy 或 unhealthy（示例见 health-lab）。
-## 版本说明（分支演示）
+
 ## Git 分支与冲突
 
 - 新建并切换分支：git switch -c 分支名
