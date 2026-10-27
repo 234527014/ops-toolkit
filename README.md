@@ -110,3 +110,9 @@ docker build -f Dockerfile.alpine -t ops-toolkit:alpine .
 
 健康检查：Dockerfile 中用 HEALTHCHECK 定期探测服务是否真的可用，docker ps 的 STATUS 会显示 healthy 或 unhealthy（示例见 health-lab）。
 ## 版本说明（分支演示）
+## Git 分支与冲突
+
+- 新建并切换分支：git switch -c 分支名
+- 合并分支：先 git switch main，再 git merge 分支名
+- 无分叉时是 Fast-forward；两个分支改了同一行会产生冲突，在 VS Code 里点选保留哪一边，再 git add、git commit 完成合并
+- 放弃一次合并：git merge --abort
