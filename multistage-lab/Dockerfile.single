@@ -1,0 +1,5 @@
+FROM alpine
+RUN apk add --no-cache build-base
+COPY hello.sh /hello.sh
+RUN chmod +x /hello.sh
+ENTRYPOINT ["/hello.sh"]
