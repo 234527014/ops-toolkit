@@ -1,0 +1,26 @@
+name: Hello CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 打招呼
+        run: echo "Hello from GitHub Actions, $GITHUB_ACTOR!"
+
+      - name: 看看机器信息
+        run: |
+          uname -a
+          python3 --version
+          docker --version
+
+      - name: 看看仓库里有什么
+        run: ls -la
+        
