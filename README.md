@@ -116,3 +116,4 @@ docker build -f Dockerfile.alpine -t ops-toolkit:alpine .
 - 合并分支：先 git switch main，再 git merge 分支名
 - 无分叉时是 Fast-forward；两个分支改了同一行会产生冲突，在 VS Code 里点选保留哪一边，再 git add、git commit 完成合并
 - 放弃一次合并：git merge --abort
+- 通过 Pull Request 合并：分支推送到 GitHub，网页上发起 PR，检查通过后合并
