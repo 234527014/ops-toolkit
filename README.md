@@ -1,5 +1,6 @@
 # ops-toolkit
 
+![Docker Build](https://github.com/234527014/ops-toolkit/actions/workflows/docker-build.yml/badge.svg)
 运维小工具集，第 0 阶段练习仓库。
 
 ## 脚本列表
