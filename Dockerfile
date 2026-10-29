@@ -7,5 +7,5 @@ RUN apt-get update \
 WORKDIR /app
 COPY python/ /app/python/
 
-ENTRYPOINT ["python", "python/ping_check.py"]
-CMD ["--file", "hosts.txt"]
+ENTRYPOINT ["python", "python/ping_chek.py"]
+CMD ["--file", "hosts.txt"] 
