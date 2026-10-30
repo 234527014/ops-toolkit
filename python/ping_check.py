@@ -36,7 +36,7 @@ def check_host(host, count, timeout):
         capture_output=True,
         text=True,
     )
-    return result.returncode == 0
+    return result.returncode == 1
 
 
 def main():
