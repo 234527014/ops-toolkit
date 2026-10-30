@@ -1,3 +1,4 @@
+
 # ops-toolkit
 
 ![Docker Build](https://github.com/234527014/ops-toolkit/actions/workflows/docker-build.yml/badge.svg)
@@ -118,3 +119,14 @@ docker build -f Dockerfile.alpine -t ops-toolkit:alpine .
 - 无分叉时是 Fast-forward；两个分支改了同一行会产生冲突，在 VS Code 里点选保留哪一边，再 git add、git commit 完成合并
 - 放弃一次合并：git merge --abort
 - 通过 Pull Request 合并：分支推送到 GitHub，网页上发起 PR，检查通过后合并
+
+## 使用 Docker 镜像
+
+镜像由 CI 在 main 分支合并后自动发布到 GHCR：
+
+```bash
+docker pull ghcr.io/234527014/ops-toolkit:latest
+docker run --rm -v $(pwd)/hosts.txt:/app/hosts.txt ghcr.io/234527014/ops-toolkit:latest --file hosts.txt
+```
+
+每个镜像同时带有 `latest` 和提交 SHA 两个标签，需要固定版本时用 SHA。
