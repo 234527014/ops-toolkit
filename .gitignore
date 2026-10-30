@@ -2,3 +2,4 @@ testlogs/
 hosts.txt
 *.log
 logs/
+__pycache__/
