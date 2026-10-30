@@ -26,6 +26,7 @@ jobs:
         run: pytest -v
 
   build:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: 拉取代码
