@@ -69,3 +69,11 @@ jobs:
           fi
           docker build $TAGS .
           docker push --all-tags $IMAGE
+  deploy-staging:
+    needs: publish
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to staging
+        run: STATE_FILE=$HOME/.ops-staging-current ./shell/deploy.sh ${{ github.sha }}
