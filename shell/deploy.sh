@@ -12,6 +12,7 @@ echo "目标版本: $TAG  当前版本: ${PREV:-无}"
 docker pull "$IMAGE:$TAG"
 
 if docker run --rm "$IMAGE:$TAG" --help >/dev/null; then
+  [ -z "$PREV" ] || echo "$PREV" > "$STATE.prev"
   echo "$TAG" > "$STATE"
   echo "部署成功，当前版本: $TAG"
 else
