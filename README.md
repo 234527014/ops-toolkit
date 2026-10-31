@@ -130,3 +130,9 @@ docker run --rm -v $(pwd)/hosts.txt:/app/hosts.txt ghcr.io/234527014/ops-toolkit
 ```
 
 每个镜像同时带有 `latest` 和提交 SHA 两个标签，需要固定版本时用 SHA。
+## 自动部署（第 12 周）
+
+- main 合并：自动发布镜像并部署 staging（自托管 runner）
+- 打 v* 标签：发布镜像，生产部署需在 GitHub 人工审批
+- 手动回滚：Actions → Run workflow，ref 选最新标签，tag to deploy 填目标版本
+- 生产环境只允许 v* 标签触发
