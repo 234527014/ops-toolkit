@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      version:
+        description: "tag to deploy"
+        required: false
 
 jobs:
   test:
@@ -78,11 +82,11 @@ jobs:
       - name: Deploy to staging
         run: STATE_FILE=$HOME/.ops-staging-current ./shell/deploy.sh ${{ github.sha }}
   deploy-prod:
-    needs: publish
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: [publish]
+    if: ${{ !cancelled() && (github.event_name == 'workflow_dispatch' || (needs.publish.result == 'success' && startsWith(github.ref, 'refs/tags/v'))) }}
     runs-on: self-hosted
     environment: production
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to production
-        run: STATE_FILE=$HOME/.ops-prod-current ./shell/deploy.sh ${{ github.ref_name }}
+        run: STATE_FILE=$HOME/.ops-prod-current ./shell/deploy.sh ${{ github.event.inputs.version || github.ref_name }}
