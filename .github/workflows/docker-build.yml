@@ -77,3 +77,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Deploy to staging
         run: STATE_FILE=$HOME/.ops-staging-current ./shell/deploy.sh ${{ github.sha }}
+  deploy-prod:
+    needs: publish
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to production
+        run: STATE_FILE=$HOME/.ops-prod-current ./shell/deploy.sh ${{ github.ref_name }}
