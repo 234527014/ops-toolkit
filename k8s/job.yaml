@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: toolkit
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: toolkit
+          image: ghcr.io/234527014/ops-toolkit:v1.2.0
+          imagePullPolicy: Never
+          volumeMounts:
+            - name: cfg
+              mountPath: /app/hosts.txt
+              subPath: hosts.txt
+      volumes:
+        - name: cfg
+          configMap:
+            name: toolkit-hosts
+            
